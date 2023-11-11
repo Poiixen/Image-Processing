@@ -1,7 +1,14 @@
 #include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello World!";
-    return 0;
+    
+    int passedTests = 0;
+    int totalTests = 12;
+
+
 }
 
