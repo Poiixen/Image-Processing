@@ -37,3 +37,8 @@ void Image::loadImage(string filePath) {
     File.close();
 
 }
+
+vector<Pixel> Image::getPixels()
+{
+    return pixels;
+}

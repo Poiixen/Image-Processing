@@ -32,6 +32,8 @@ class Image {
     
         Header getHeader();
         vector<Pixel> getPixels();
+
+        //image properties
         
         void loadImage(string filePath);
 
@@ -44,6 +46,26 @@ class Image {
         void setPixelVector(vector<Pixel> &vector);
 
         bool operator==(Image &other);
+
+        //image manipulators
+
+        void Multiply(Image &img1, Image &img2);
+
+        void Subtract(Image &img1, Image &img2);
+
+        void Screen(Image &img1, Image &img2);
+
+        void Overlay(Image &img1, Image &img2);
+
+        void scaleGreen(Image &img1);
+
+        void scaleRed(Image &img1);
+
+        void splitChannels(string rgb, Image &img1);
+
+        void Combine(Image &img1, Image &img2, Image &C);
+
+        void Rotate(Image &img1);
 
     private:
         Pixel pixel;

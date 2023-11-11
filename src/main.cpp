@@ -5,27 +5,31 @@
 
 using namespace std;
 
-int compareImages(Image &img1, Image &img2)
-{
-    if (img1 == img2) {
-        return 1;
+bool comparePixels(Image &img1, Image &img2) {
+
+   vector<Pixel> pixels1 = img1.getPixels();
+    vector<Pixel> pixels2 = img2.getPixels();
+    for (int i = 0; i < pixels1.size(); i++) {
+        if ((int)pixels1.at(i).red != (int)pixels2.at(i).red)
+            return false;
+        if ((int)pixels1.at(i).green != (int)pixels2.at(i).green)
+            return false;
+        if ((int)pixels1.at(i).blue != (int)pixels2.at(i).blue)
+            return false;
     }
-    else
-    {
-        return 0;
-    }
-};
+    return true;
+}
 
 int Test1(Image img1, Image img2) {
         
-        if (compareImages(img1, img2)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 1.....Passed" << endl;
-            return 1;
-        }
-        else {
-            cout << "Test 1.....Failed" << endl;
-            return 0;
-        }
+    if (comparePixels(img1, img2)) {   //TODO: COMPARISON CHECKS
+        cout << "Test 1.....Passed" << endl;
+        return 1;
+    }
+    else {
+        cout << "Test 1.....Failed" << endl;
+        return 0;
+    }
 };
 
 
@@ -92,6 +96,7 @@ int main() {
     EXAMPLE_extracredit.loadImage("./examples/EXAMPLE_extracredit.tga");
 
     passedTests += Test1(EXAMPLE_part2, EXAMPLE_part2);
+    
     
     return 0;
 };
