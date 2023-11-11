@@ -33,9 +33,9 @@ class Image {
         Header getHeader();
         vector<Pixel> getPixels();
         
-        void LoadImage(string filePath);
+        void loadImage(string filePath);
 
-        void WriteImage(string outName);
+        void writeImage(string outName);
 
         void setUnsignedInts();
 

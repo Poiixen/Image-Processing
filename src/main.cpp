@@ -1,28 +1,103 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Image.h"
 
 using namespace std;
+
+int compareImages(Image &img1, Image &img2)
+{
+    if (img1 == img2) {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+};
+
+int Test1(Image img1, Image img2) {
+        
+        if (compareImages(img1, img2)) {   //TODO: COMPARISON CHECKS
+            cout << "Test 1.....Passed" << endl;
+            return 1;
+        }
+        else {
+            cout << "Test 1.....Failed" << endl;
+            return 0;
+        }
+};
+
 
 int main() {
     
     int passedTests = 0;
     int totalTests = 12;
 
-/*
-    void Test1() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 1 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 1 Failed" << endl;
-        }
-    }
+    // loading my images
 
+    Image car;
+    Image circles;
+    Image layer_blue;
+    Image layer_green;
+    Image layer_red;
+    Image layer1;
+    Image layer2;
+    Image pattern1;
+    Image pattern2;
+    Image text;
+    Image text2;
+
+    car.loadImage("./input/car.tga");
+    circles.loadImage("./input/circles.tga"); 
+    layer_blue.loadImage("./input/layer_blue.tga");
+    layer_green.loadImage("./input/layer_green.tga");
+    layer_red.loadImage("./input/layer_red.tga");
+    layer1.loadImage("./input/layer1.tga");
+    layer2.loadImage("./input/layer2.tga");
+    pattern1.loadImage("./input/pattern1.tga");
+    pattern2.loadImage("./input/pattern2.tga");
+    text.loadImage("./input/text.tga");
+    text2.loadImage("./input/text2.tga");
+    
+    
+    // loading examples for comparison
+
+    Image EXAMPLE_part1;
+    Image EXAMPLE_part2;
+    Image EXAMPLE_part3;
+    Image EXAMPLE_part4;
+    Image EXAMPLE_part5;
+    Image EXAMPLE_part6;
+    Image EXAMPLE_part7;
+    Image EXAMPLE_part8_b;
+    Image EXAMPLE_part8_g;
+    Image EXAMPLE_part8_r;
+    Image EXAMPLE_part9;
+    Image EXAMPLE_part10;
+    Image EXAMPLE_extracredit;
+
+    EXAMPLE_part1.loadImage("./examples/EXAMPLE_part1.tga");
+    EXAMPLE_part2.loadImage("./examples/EXAMPLE_part2.tga");
+    EXAMPLE_part3.loadImage("./examples/EXAMPLE_part3.tga");
+    EXAMPLE_part4.loadImage("./examples/EXAMPLE_part4.tga");
+    EXAMPLE_part5.loadImage("./examples/EXAMPLE_part5.tga");
+    EXAMPLE_part6.loadImage("./examples/EXAMPLE_part6.tga");
+    EXAMPLE_part7.loadImage("./examples/EXAMPLE_part7.tga");
+    EXAMPLE_part8_r.loadImage("./examples/EXAMPLE_part8_r.tga");
+    EXAMPLE_part8_g.loadImage("./examples/EXAMPLE_part8_g.tga");
+    EXAMPLE_part8_b.loadImage("./examples/EXAMPLE_part8_b.tga");
+    EXAMPLE_part9.loadImage("./examples/EXAMPLE_part9.tga");
+    EXAMPLE_part10.loadImage("./examples/EXAMPLE_part10.tga");
+    EXAMPLE_extracredit.loadImage("./examples/EXAMPLE_extracredit.tga");
+
+    passedTests += Test1(EXAMPLE_part2, EXAMPLE_part2);
+    
+    return 0;
+};
+
+
+/*
     void Test2() {
         
         
@@ -142,5 +217,3 @@ int main() {
         //TODO: implement
     }
 */
-}
-

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "vector": "cpp",
-        "xiosbase": "cpp"
-    }
+        "xiosbase": "cpp",
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

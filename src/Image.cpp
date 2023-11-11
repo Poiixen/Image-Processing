@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void Image::LoadImage(string filePath) {
+void Image::loadImage(string filePath) {
     ifstream File(filePath, ios_base::binary);
 
     //load image properties
@@ -22,7 +22,7 @@ void Image::LoadImage(string filePath) {
     File.read(&header.imageDescriptor, sizeof(header.imageDescriptor));
 
     //reading pixels
-    int size = header.width * header.height;
+    int size = header.height * header.width;
     int currentPixel = 0;
     while (currentPixel < size) {
         Pixel pixel;
@@ -35,5 +35,5 @@ void Image::LoadImage(string filePath) {
         currentPixel++;
     }
     File.close();
-    
+
 }
