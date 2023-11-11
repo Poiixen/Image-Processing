@@ -20,14 +20,34 @@ bool comparePixels(Image &img1, Image &img2) {
     return true;
 }
 
-int Test1(Image img1, Image img2) {
+/* bool compareHeader(const Image &img1, const Image& img2) {
+    const auto& header1 = img1.getHeader();
+    const auto& header2 = img2.getHeader();
+
+    for (const auto& field : {
+            &Header::idLength, &Header::colorMapType, &Header::dataTypeCode,
+            &Header::colorMapOrigin, &Header::colorMapLength, &Header::colorMapDepth,
+            &Header::xOrigin, &Header::yOrigin, &Header::width, &Header::height,
+            &Header::bitsPerPixel, &Header::imageDescriptor
+        }) {
+        if (*field(header1) != *field(header2)) {
+            return false;
+        }
+    }
+
+    // If all fields are equal, return true
+    return true;
+}
+*/
+
+int Test(Image img1, Image img2, int testNum) {
         
-    if (comparePixels(img1, img2)) {   //TODO: COMPARISON CHECKS
-        cout << "Test 1.....Passed" << endl;
+    if (comparePixels(img1, img2)) { //&& compareHeaders(img1, img2)) {   //TODO: COMPARISON CHECKS
+        cout << "Test " << testNum << ".....Passed" << endl;
         return 1;
     }
     else {
-        cout << "Test 1.....Failed" << endl;
+        cout << "Test " << testNum << ".....Failed" << endl;
         return 0;
     }
 };
@@ -95,7 +115,11 @@ int main() {
     EXAMPLE_part10.loadImage("./examples/EXAMPLE_part10.tga");
     EXAMPLE_extracredit.loadImage("./examples/EXAMPLE_extracredit.tga");
 
-    passedTests += Test1(EXAMPLE_part2, EXAMPLE_part2);
+    
+    
+    Image part1 = Multiply(layer1, pattern1);
+
+    passedTests += Test(part1, EXAMPLE_part1, 1);
     
     
     return 0;
@@ -103,121 +127,6 @@ int main() {
 
 
 /*
-    void Test2() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 2 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 2 Failed" << endl;
-        }
-    }
-
-    void Test3() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 3 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 3 Failed" << endl;
-        }
-    }
-
-    void Test4() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 4 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 4 Failed" << endl;
-        }
-    }
-    
-    void Test5() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 5 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 5 Failed" << endl;
-        }
-    }
-
-    void Test6() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 6 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 6 Failed" << endl;
-        }
-    }
-
-    void Test7() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 7 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 7 Failed" << endl;
-        }
-    }
-
-    void Test8() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 8 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 8 Failed" << endl;
-        }
-    }
-
-    void Test9() {
-        
-        
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 9 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 9 Failed" << endl;
-        }
-    }
-
-    void Test10() {
-        
-        if ((blah blah blah) && (black blah blah)) {   //TODO: COMPARISON CHECKS
-            cout << "Test 10 Passed" << endl;
-            passedTests += 1;
-        }
-        else {
-            cout << "Test 10 Failed" << endl;
-        }
-    }
-
     void ExtraCredit() {
         //TODO: implement
     }
