@@ -5,6 +5,7 @@
 using namespace std;
 
 float Image::scale(float scale)
+
 {
     scale += 0.5f;
     return scale;
@@ -21,13 +22,13 @@ Image::Header Image::getHeader()
     return header;
 }
 
-unsigned int Image::ConvertCtoI(unsigned char character)
+unsigned int Image::CharToInt(unsigned char character)
 {
     // Converts unsigned char to unsigned int by removing null terminator and type casting
     return (unsigned int)(character - '\0');
 }
 
-unsigned char Image::ConvertItoC(unsigned int integer)
+unsigned char Image::IntToChar(unsigned int integer)
 {
     // Converts unsigned int to unsigned char by adding null terminator and type casting
     return (unsigned char)(integer + '\0');
@@ -59,13 +60,13 @@ void Image::loadImage(string filePath) {
         File.read((char *)&pixel.green, sizeof(pixel.green));
         File.read((char *)&pixel.red, sizeof(pixel.red));
 
-        pixel.blueint = ConvertCtoI(pixel.blue);
-        pixel.greenint = ConvertCtoI(pixel.green);
-        pixel.redint = ConvertCtoI(pixel.red);
-
+        pixel.blueint = CharToInt(pixel.blue);
+        pixel.greenint = CharToInt(pixel.green);
+        pixel.redint = CharToInt(pixel.red);
         pixels.push_back(pixel);
     }
     File.close();
+
 
 }
 
@@ -89,6 +90,7 @@ void Image::writeImage(string filepath) {
         File.write(&header.bitsPerPixel, sizeof(header.bitsPerPixel));
         File.write(&header.imageDescriptor, sizeof(header.imageDescriptor));
         
+        cout << pixels.size()<< "\n";
         for (unsigned int i = 0; i < pixels.size(); i++) {
             File.write((char*)&pixels.at(i).blue, sizeof(pixels.at(i).blue));
             File.write((char*)&pixels.at(i).green, sizeof(pixels.at(i).green));
@@ -102,9 +104,9 @@ void Image::setUnsignedInts()
 {
     for (unsigned int i = 0; i < pixels.size(); i++)
     {
-        pixels[i].redint = ConvertCtoI(pixels[i].red);
-        pixels[i].greenint = ConvertCtoI(pixels[i].green);
-        pixels[i].blueint = ConvertCtoI(pixels[i].blue);
+        pixels[i].redint = CharToInt(pixels[i].red);
+        pixels[i].greenint = CharToInt(pixels[i].green);
+        pixels[i].blueint = CharToInt(pixels[i].blue);
     }
 }
 
@@ -116,7 +118,7 @@ void Image::setPixels(vector<Pixel> &vector)
     }
 }
 
-void Image::setHeader(Header &headerData)
+void Image::setHeader(Header headerData)
 {
     header.idLength = headerData.idLength;
     header.colorMapType = headerData.colorMapType;
@@ -135,39 +137,46 @@ void Image::setHeader(Header &headerData)
 
 /************************************************************************/
 
-Image Image::Multiply(Image &A, Image &B)
+Image Image::Multiply(Image &img1, Image &img2)
 {
-    Image C;
+    Image resultImg;
 
-    Image::Header header = A.getHeader();
-    C.setHeader(header);
-    A.setUnsignedInts();
-    B.setUnsignedInts();
+    Image::setHeader(img1.getHeader());
+    //Image::Header header = header;
+    resultImg.setHeader(header);
+    img1.setUnsignedInts();
+    img2.setUnsignedInts();
 
-    vector<Pixel> Apixels = A.getPixels();
-    vector<Pixel> Bpixels = B.getPixels();
+    vector<Pixel> img1pixels = img1.getPixels();
+    vector<Pixel> img2pixels = img2.getPixels();
 
-    vector<Pixel> Cpixels;
+    vector<Pixel> resultPixels;
 
-    for (unsigned int i = 0; i < Apixels.size(); i++)
+    for (unsigned int i = 0; i < img1pixels.size(); i++)
     {
-        Pixel Cpixel;
+        Pixel resultPixel;
 
-        unsigned int redInt = (unsigned int)(scale(Apixels[i].redint * Bpixels[i].redint / 255.0f));
-        unsigned char red = A.ConvertItoC(redInt);
-        Cpixel.red = red;
+        unsigned int blueInt = (unsigned int)(scale(img1pixels[i].blueint * img2pixels[i].blueint / 255.0f));
+        unsigned char blue = img1.IntToChar(blueInt);
+        resultPixel.blue = blue;
 
-        unsigned int greenInt = (unsigned int)(scale(Apixels[i].greenint * Bpixels[i].greenint / 255.0f));
-        unsigned char green = A.ConvertItoC(greenInt);
-        Cpixel.green = green;
+        unsigned int greenInt = (unsigned int)(scale(img1pixels[i].greenint * img2pixels[i].greenint / 255.0f));
+        unsigned char green = img1.IntToChar(greenInt);
+        resultPixel.green = green;
 
-        unsigned int blueInt = (unsigned int)(scale(Apixels[i].blueint * Bpixels[i].blueint / 255.0f));
-        unsigned char blue = A.ConvertItoC(blueInt);
-        Cpixel.blue = blue;
+        unsigned int redInt = (unsigned int)(scale(img1pixels[i].redint * img2pixels[i].redint / 255.0f));
+        unsigned char red = img1.IntToChar(redInt);
+        resultPixel.red = red;
 
-        Cpixels.push_back(Cpixel);
+        resultPixels.push_back(resultPixel);
     }
-    C.setPixels(Cpixels);
 
-    return C;
+
+    resultImg.setPixels(resultPixels);
+    //header = resultImg.header;
+    pixels = resultImg.pixels;
+
+    cout << Image::getHeader().width<< "\n";
+
+    return resultImg;
 }

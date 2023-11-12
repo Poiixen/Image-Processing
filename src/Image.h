@@ -45,38 +45,36 @@ class Image {
 
         void setUnsignedInts();
 
-        void setHeader(Header &headerData);
+        void setHeader(Header headerData);
 
         void setPixels(vector<Pixel> &vector);
 
         bool operator==(Image &other);
 
         //
+        unsigned int CharToInt(unsigned char character);
 
-        unsigned int ConvertCtoI(unsigned char character);
-
-        unsigned char ConvertItoC(unsigned int integer);
-
+        unsigned char IntToChar(unsigned int integer);
         //
 
 
         Image Multiply(Image &A, Image &B);
 
-        void Subtract(Image &img1, Image &img2);
+        Image Subtract(Image &img1, Image &img2);
 
-        void Screen(Image &img1, Image &img2);
+        Image Screen(Image &img1, Image &img2);
 
-        void Overlay(Image &img1, Image &img2);
+        Image Overlay(Image &img1, Image &img2);
 
-        void scaleGreen(Image &img1);
+        Image scaleGreen(Image &img1);
 
-        void scaleRed(Image &img1);
+        Image scaleRed(Image &img1);
 
-        void splitChannels(string rgb, Image &img1);
+        Image splitChannels(string rgb, Image &img1);
 
-        void Combine(Image &img1, Image &img2, Image &img3);
+        Image Combine(Image &img1, Image &img2, Image &img3);
 
-        void Rotate(Image &img1);
+        Image Rotate(Image &img1);
 
         float scale(float scale);
 
