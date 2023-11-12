@@ -20,29 +20,38 @@ bool comparePixels(Image &img1, Image &img2) {
     return true;
 }
 
-/* bool compareHeader(const Image &img1, const Image& img2) {
-    const auto& header1 = img1.getHeader();
-    const auto& header2 = img2.getHeader();
 
-    for (const auto& field : {
-            &Header::idLength, &Header::colorMapType, &Header::dataTypeCode,
-            &Header::colorMapOrigin, &Header::colorMapLength, &Header::colorMapDepth,
-            &Header::xOrigin, &Header::yOrigin, &Header::width, &Header::height,
-            &Header::bitsPerPixel, &Header::imageDescriptor
-        }) {
-        if (*field(header1) != *field(header2)) {
-            return false;
-        }
-    }
-
-    // If all fields are equal, return true
+bool compareHeaders(Image img1, Image img2) {
+    if ((int)img1.getHeader().idLength != (int)img2.getHeader().idLength)
+        return false;
+    if ((int)img1.getHeader().colorMapType != (int)img2.getHeader().colorMapType)
+        return false;
+    if ((int)img1.getHeader().dataTypeCode != (int)img2.getHeader().dataTypeCode)
+        return false;
+    if ((short)img1.getHeader().colorMapOrigin != (short)img2.getHeader().colorMapOrigin)
+        return false;
+    if ((short)img1.getHeader().colorMapLength != (short)img2.getHeader().colorMapLength)
+        return false;
+    if ((int)img1.getHeader().colorMapDepth != (int)img2.getHeader().colorMapDepth)
+        return false;
+    if ((short)img1.getHeader().xOrigin != (short)img2.getHeader().xOrigin)
+        return false;
+    if ((short)img1.getHeader().yOrigin != (short)img2.getHeader().yOrigin)
+        return false;
+    if ((short)img1.getHeader().width != (short)img2.getHeader().width)
+        return false;
+    if ((short)img1.getHeader().height != (short)img2.getHeader().height)
+        return false;
+    if ((int)img1.getHeader().bitsPerPixel != (int)img2.getHeader().bitsPerPixel)
+        return false;
+    if ((int)img1.getHeader().imageDescriptor != (int)img2.getHeader().imageDescriptor)
+        return false;
     return true;
 }
-*/
 
 int Test(Image img1, Image img2, int testNum) {
         
-    if (comparePixels(img1, img2)) { //&& compareHeaders(img1, img2)) {   //TODO: COMPARISON CHECKS
+    if (comparePixels(img1, img2) && compareHeaders(img1, img2)) {   //TODO: COMPARISON CHECKS
         cout << "Test " << testNum << ".....Passed" << endl;
         return 1;
     }
@@ -51,7 +60,6 @@ int Test(Image img1, Image img2, int testNum) {
         return 0;
     }
 };
-
 
 int main() {
     
@@ -117,11 +125,46 @@ int main() {
 
     
     
-    Image part1 = Multiply(layer1, pattern1);
-
+    Image part1;
+    part1.Multiply(layer1, pattern1);
+    part1.writeImage("output/part1.tga");
     passedTests += Test(part1, EXAMPLE_part1, 1);
+
+
+
     
+    /*
+    passedTests += Test(something, EXAMPLE_part2, 2);
+    passedTests += Test(something, EXAMPLE_part3, 3);
+    passedTests += Test(something, EXAMPLE_part4, 4);
+    passedTests += Test(something, EXAMPLE_part5, 5);
+    passedTests += Test(something, EXAMPLE_part6, 6);
+    passedTests += Test(something, EXAMPLE_part7, 7);
     
+
+    passedTests += Test(something, EXAMPLE_part8, 8);
+    Image partEight_red = splitChannels("red", car);
+    partEight_red.WriteImage("output/part8_r.tga");
+    
+    passedTests += testImages(partEight_red, EXAMPLE_part8_r);
+    
+    Image partEight_green = splitChannels("green", car);
+    partEight_green.WriteImage("output/part8_g.tga");
+    
+    passedTests += testImages(partEight_green, EXAMPLE_part8_g);
+    
+    Image partEight_blue = splitChannels("blue", car);
+    partEight_blue.WriteImage("output/part8_b.tga");
+
+    passedTests += testImages(partEight_blue, EXAMPLE_part8_b);
+    
+
+    passedTests += Test( something, EXAMPLE_part9, 9);
+    passedTests += Test( something, EXAMPLE_part10, 10);
+    */
+    
+
+    cout << "Total tests passed: " << passedTests << "/10";
     return 0;
 };
 

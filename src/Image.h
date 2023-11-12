@@ -11,6 +11,10 @@ struct Pixel {
     unsigned char blue;
     unsigned char green;
     unsigned char red;
+    
+    unsigned int blueint;
+    unsigned int greenint;
+    unsigned int redint;  
 };
 
 class Image {
@@ -43,13 +47,20 @@ class Image {
 
         void setHeader(Header &headerData);
 
-        void setPixelVector(vector<Pixel> &vector);
+        void setPixels(vector<Pixel> &vector);
 
         bool operator==(Image &other);
 
-        //image manipulators
+        //
 
-        void Multiply(Image &img1, Image &img2);
+        unsigned int ConvertCtoI(unsigned char character);
+
+        unsigned char ConvertItoC(unsigned int integer);
+
+        //
+
+
+        Image Multiply(Image &A, Image &B);
 
         void Subtract(Image &img1, Image &img2);
 
@@ -63,9 +74,11 @@ class Image {
 
         void splitChannels(string rgb, Image &img1);
 
-        void Combine(Image &img1, Image &img2, Image &C);
+        void Combine(Image &img1, Image &img2, Image &img3);
 
         void Rotate(Image &img1);
+
+        float scale(float scale);
 
     private:
         Pixel pixel;
@@ -73,3 +86,7 @@ class Image {
         vector<Pixel> pixels;
 
 };
+
+
+
+    
