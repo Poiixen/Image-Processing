@@ -84,7 +84,3 @@ class Image {
         vector<Pixel> pixels;
 
 };
-
-
-
-    

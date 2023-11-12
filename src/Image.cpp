@@ -4,33 +4,24 @@
 
 using namespace std;
 
-float Image::scale(float scale)
-
-{
+float Image::scale(float scale) {
     scale += 0.5f;
     return scale;
 }
 
-
-vector<Pixel> Image::getPixels()
-{
+vector<Pixel> Image::getPixels() {
     return pixels;
 }
 
-Image::Header Image::getHeader()
-{
+Image::Header Image::getHeader() {
     return header;
 }
 
-unsigned int Image::CharToInt(unsigned char character)
-{
-    // Converts unsigned char to unsigned int by removing null terminator and type casting
+unsigned int Image::CharToInt(unsigned char character) {
     return (unsigned int)(character - '\0');
 }
 
-unsigned char Image::IntToChar(unsigned int integer)
-{
-    // Converts unsigned int to unsigned char by adding null terminator and type casting
+unsigned char Image::IntToChar(unsigned int integer) {
     return (unsigned char)(integer + '\0');
 }
 
@@ -90,7 +81,6 @@ void Image::writeImage(string filepath) {
         File.write(&header.bitsPerPixel, sizeof(header.bitsPerPixel));
         File.write(&header.imageDescriptor, sizeof(header.imageDescriptor));
         
-        cout << pixels.size()<< "\n";
         for (unsigned int i = 0; i < pixels.size(); i++) {
             File.write((char*)&pixels.at(i).blue, sizeof(pixels.at(i).blue));
             File.write((char*)&pixels.at(i).green, sizeof(pixels.at(i).green));
@@ -100,8 +90,7 @@ void Image::writeImage(string filepath) {
     }
 }
 
-void Image::setUnsignedInts()
-{
+void Image::setUnsignedInts() {
     for (unsigned int i = 0; i < pixels.size(); i++)
     {
         pixels[i].redint = CharToInt(pixels[i].red);
@@ -110,16 +99,14 @@ void Image::setUnsignedInts()
     }
 }
 
-void Image::setPixels(vector<Pixel> &vector)
-{
+void Image::setPixels(vector<Pixel> &vector) {
     for (unsigned int i = 0; i < vector.size(); i++)
     {
         pixels.push_back(vector[i]);
     }
 }
 
-void Image::setHeader(Header headerData)
-{
+void Image::setHeader(Header headerData) {
     header.idLength = headerData.idLength;
     header.colorMapType = headerData.colorMapType;
     header.dataTypeCode = headerData.dataTypeCode;
@@ -137,12 +124,11 @@ void Image::setHeader(Header headerData)
 
 /************************************************************************/
 
-Image Image::Multiply(Image &img1, Image &img2)
-{
+Image Image::Multiply(Image &img1, Image &img2) {
+    
     Image resultImg;
-
     Image::setHeader(img1.getHeader());
-    //Image::Header header = header;
+
     resultImg.setHeader(header);
     img1.setUnsignedInts();
     img2.setUnsignedInts();
@@ -171,12 +157,47 @@ Image Image::Multiply(Image &img1, Image &img2)
         resultPixels.push_back(resultPixel);
     }
 
-
     resultImg.setPixels(resultPixels);
-    //header = resultImg.header;
     pixels = resultImg.pixels;
 
-    cout << Image::getHeader().width<< "\n";
+    return resultImg;
+}
+
+Image Image::Subtract(Image &img1, Image &img2) {
+    
+    Image resultImg;
+
+    Image::setHeader(img1.getHeader());
+
+    resultImg.setHeader(header);
+    img1.setUnsignedInts();
+    img2.setUnsignedInts();
+
+    vector<Pixel> img1pixels = img1.getPixels();
+    vector<Pixel> img2pixels = img2.getPixels();
+
+    vector<Pixel> resultPixels;
+
+    for (unsigned int i = 0; i < img1pixels.size(); i++)
+    {
+        Pixel resultPixel;
+        int blueInt = img1pixels[i].blueint - img2pixels[i].blueint;
+        int greenInt = img1pixels[i].greenint - img2pixels[i].greenint;
+        int redInt = img1pixels[i].redint - img2pixels[i].redint;
+        
+        resultPixel.blueint = (blueInt < 0) ? 0 : ((blueInt > 255) ? 255 : blueInt);
+        resultPixel.greenint = (greenInt < 0) ? 0 : ((greenInt > 255) ? 255 : greenInt);
+        resultPixel.redint = (redInt < 0) ? 0 : ((redInt > 255) ? 255 : redInt);
+
+        resultPixel.blue = img1.IntToChar(resultPixel.blueint);
+        resultPixel.green = img1.IntToChar(resultPixel.greenint);
+        resultPixel.red = img1.IntToChar(resultPixel.redint);
+
+        resultPixels.push_back(resultPixel);
+    }
+
+    resultImg.setPixels(resultPixels);
+    pixels = resultImg.pixels;
 
     return resultImg;
 }

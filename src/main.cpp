@@ -92,7 +92,6 @@ int main() {
     text.loadImage("./input/text.tga");
     text2.loadImage("./input/text2.tga");
     
-    
     // loading examples for comparison
 
     Image EXAMPLE_part1;
@@ -125,22 +124,22 @@ int main() {
 
    
 //Test1:
-  
+
     Image part1;
     part1.Multiply(layer1, pattern1);
     part1.writeImage("output/part1.tga");
     passedTests += Test(part1, EXAMPLE_part1, 1);
 
 
-
-/*
-Test2:
+//Test2:
 
     Image part2; 
     part2.Subtract(car, layer2);
-    part2.writeImage("output/part2.tga")
+    part2.writeImage("output/part2.tga");
     passedTests += Test(part2, EXAMPLE_part2, 2);
-    
+
+
+/*
 Test3:
 
     Image temp;
