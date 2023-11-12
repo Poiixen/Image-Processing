@@ -49,12 +49,15 @@ class Image {
 
         void setPixels(vector<Pixel> &vector);
 
-        bool operator==(Image &other);
-
         //
         unsigned int CharToInt(unsigned char character);
 
         unsigned char IntToChar(unsigned int integer);
+        
+
+        float scale(float scale);
+        
+        unsigned int clamp(int num);
         //
 
 
@@ -66,9 +69,9 @@ class Image {
 
         Image Overlay(Image &img1, Image &img2);
 
-        Image scaleGreen(Image &img1);
+        Image addToGreen(Image &img1, int increment);
 
-        Image scaleRed(Image &img1);
+        Image scaleRed(Image &img1, int increment1, int increment2);
 
         Image splitChannels(string rgb, Image &img1);
 
@@ -76,8 +79,7 @@ class Image {
 
         Image Rotate(Image &img1);
 
-        float scale(float scale);
-
+        
     private:
         Pixel pixel;
         Header header;

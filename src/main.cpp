@@ -9,6 +9,7 @@ bool comparePixels(Image &img1, Image &img2) {
 
     vector<Pixel> pixels1 = img1.getPixels();
     vector<Pixel> pixels2 = img2.getPixels();
+    
     for (int i = 0; i < pixels1.size(); i++) {
         if ((int)pixels1.at(i).red != (int)pixels2.at(i).red)
             return false;
@@ -130,7 +131,6 @@ int main() {
     part1.writeImage("output/part1.tga");
     passedTests += Test(part1, EXAMPLE_part1, 1);
 
-
 //Test2:
 
     Image part2; 
@@ -138,9 +138,7 @@ int main() {
     part2.writeImage("output/part2.tga");
     passedTests += Test(part2, EXAMPLE_part2, 2);
 
-
-/*
-Test3:
+//Test3:
 
     Image temp;
     temp.Multiply(layer1, pattern2);
@@ -148,42 +146,44 @@ Test3:
     Image part3;
     part3.Screen(text, temp);
 
-    part3.writeImage("output/part3.tga")
+    part3.writeImage("output/part3.tga");
     passedTests += Test(part3, EXAMPLE_part3, 3);
 
-Test4:
+//Test4:
 
     Image temp2;
     temp2.Multiply(layer2, circles);
     
     Image part4;
     part4.Subtract(temp2, pattern2);
+
     part4.writeImage("output/part4.tga");
     passedTests += Test(part4, EXAMPLE_part4, 4);
-
-Test5:
+    
+//Test5:
 
     Image part5;
     part5.Overlay(pattern1, layer1);
     part5.writeImage("output/part5.tga");
     passedTests += Test(part5, EXAMPLE_part5, 5);
 
-Test6:
+//Test6:
     
     Image part6;
-    part6.addGreen(car);
+    part6.addToGreen(car, 200);  
     part6.writeImage("output/part6.tga");
     passedTests += Test(part6, EXAMPLE_part6, 6);
 
-
-Test7:
+//Test7:
 
     Image part7;
-    part7.scaleRed(car);
-    part7.WriteImage("output/part7.tga");
+    part7.scaleRed(car, 4, 0);
+    part7.writeImage("output/part7.tga");
     passedTests += Test(part7, EXAMPLE_part7, 7);
 
-Test8:
+    
+
+//Test8:
     
     Image part8_blue;
     part8_blue.splitChannels("blue", car);
@@ -199,29 +199,30 @@ Test8:
     part8_green.writeImage("output/part8_g.tga");
     part8_red.writeImage("output/part8_r.tga");
 
-    passedTests += Test(part8_blue, EXAMPLE_part8_b);
-    passedTests += Test(part8_green, EXAMPLE_part8_g);
-    passedTests += Test(part8_red, EXAMPLE_part8_r);
+    cout << "blue ";
+    passedTests += Test(part8_blue, EXAMPLE_part8_b, 8);
+    cout << "green ";
+    passedTests += Test(part8_green, EXAMPLE_part8_g, 8);
+    cout << "red ";
+    passedTests += Test(part8_red, EXAMPLE_part8_r, 8);
 
-Test9:
+
+
+//Test9:
 
     Image part9;
     part9.Combine(layer_red, layer_green, layer_blue);
     part9.writeImage("output/part9.tga");
     passedTests += Test(part9, EXAMPLE_part9, 9);
 
-
-Test10:
+//Test10:
 
     Image part10;
     part10.Rotate(text2);
-    part10.writeImage("output/part9.tga")
+    part10.writeImage("output/part10.tga");
     passedTests += Test(part10, EXAMPLE_part10, 10);
-    
-*/
-    
 
-    cout << "Total tests passed: " << passedTests << "/10";
+    cout << "Total tests passed: " << passedTests << "/12";
 
     return 0;
 };
