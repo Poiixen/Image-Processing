@@ -225,8 +225,9 @@ int main() {
 //ExtraCredit:
 
     Image extraCredit;
-    extraCredit.ExtraCredit(car, circles, pattern1, text);
-    extraCredit.writeImage("output/extracredit.tga");
+    Image result = extraCredit.ExtraCredit(text, pattern1, car, circles);
+    result.writeImage("output/extracredit.tga");
+    passedTests += Test(result, EXAMPLE_extracredit, 11);
     
     cout << "Total tests passed: " << passedTests << "/12";
 

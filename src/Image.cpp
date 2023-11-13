@@ -479,7 +479,6 @@ Image Image::ExtraCredit(Image &img1, Image &img2, Image &img3, Image &img4) {
             }
         }
     }
-    img1Index = img2Index = 0;
 
     unsigned int img3Index = 0;
     unsigned int img4Index = 0;
@@ -496,15 +495,9 @@ Image Image::ExtraCredit(Image &img1, Image &img2, Image &img3, Image &img4) {
             }
         }
     }
-    img3Index = img4Index = 0;
-
-    cout << newImage.pixels.size();
-
-    newImage.setPixels(newImage.pixels);
+  
+ 
     pixels = newImage.pixels;
-    
-   
-
     return newImage;
 }
 
