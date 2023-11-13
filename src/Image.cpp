@@ -419,8 +419,6 @@ Image Image::Combine(Image &img1, Image &img2, Image &img3) {
     return resultImg;
 }
 
-
-
 Image Image::Rotate(Image &img1) {
 
     Image resultImg;
@@ -449,10 +447,66 @@ Image Image::Rotate(Image &img1) {
 }
 
 
-/*
 Image Image::ExtraCredit(Image &img1, Image &img2, Image &img3, Image &img4) {
+    Image newImage;
+    newImage.header = img1.header;
 
+    newImage.header.height *= 2;
+    newImage.header.width *= 2;
+
+    img1.setUnsignedInts();
+    img2.setUnsignedInts();
+    img3.setUnsignedInts();
+    img4.setUnsignedInts();
+
+    unsigned int img1Index = 0;
+    unsigned int img2Index = 0;
+
+    unsigned int half = newImage.header.height / 2;
+    unsigned int full = newImage.header.width;
+
+    for (auto i = 0; i < half; i++) {
+        for (auto j = 0; j < full; j++) {
+            // If j is less than half, we're in the first image
+            if (j < half) {
+                newImage.pixels.push_back(img1.pixels[img1Index]);
+                img1Index++;
+            }
+            // If j is more than half, we're in the second image
+            else {
+                newImage.pixels.push_back(img2.pixels[img2Index]);
+                img2Index++;
+            }
+        }
+    }
+    img1Index = img2Index = 0;
+
+    unsigned int img3Index = 0;
+    unsigned int img4Index = 0;
+
+    for (auto i = 0; i < half; i++) {
+        for (auto j = 0; j < full; j++) {
+            if (j < half) {
+                newImage.pixels.push_back(img3.pixels[img3Index]);
+                img3Index++;
+            }
+            else {
+                newImage.pixels.push_back(img4.pixels[img4Index]);
+                img4Index++;
+            }
+        }
+    }
+    img3Index = img4Index = 0;
+
+    cout << newImage.pixels.size();
+
+    newImage.setPixels(newImage.pixels);
+    pixels = newImage.pixels;
+    
+   
+
+    return newImage;
 }
 
 
-*/
+

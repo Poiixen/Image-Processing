@@ -79,7 +79,8 @@ class Image {
 
         Image Rotate(Image &img1);
 
-        
+        Image ExtraCredit(Image &img1, Image &img2, Image &img3, Image &img4);
+
     private:
         Pixel pixel;
         Header header;

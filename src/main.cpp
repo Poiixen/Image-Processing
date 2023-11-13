@@ -222,14 +222,16 @@ int main() {
     part10.writeImage("output/part10.tga");
     passedTests += Test(part10, EXAMPLE_part10, 10);
 
+//ExtraCredit:
+
+    Image extraCredit;
+    extraCredit.ExtraCredit(car, circles, pattern1, text);
+    extraCredit.writeImage("output/extracredit.tga");
+    
     cout << "Total tests passed: " << passedTests << "/12";
 
     return 0;
 };
 
 
-/*
-    void ExtraCredit() {
-        //TODO: implement
-    }
-*/
+
