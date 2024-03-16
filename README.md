@@ -31,6 +31,7 @@ This project was created by Jorge Garcia.
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
 ---
 
 **Note:** Refer to the project documentation and comments within the source code for more detailed information on specific functionalities and usage instructions.
