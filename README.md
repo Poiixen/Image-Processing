@@ -1,6 +1,13 @@
-<img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/c3bf11fb-828e-4f09-adf7-955bba5be578"># Image Processing Project
+# Image Processing Project
 
 This project involves developing a program for image processing. It includes functionalities such as reading binary .TGA image files, processing their data, and writing modified images back to .TGA files. 
+
+## Example
+
+<img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/016d8700-927b-4c17-9404-d2a6ee657aa1">, <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/324e791c-c843-4c88-a9a7-b171976f6725">
+
+<img width="213" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/23033dcf-4953-48ce-8b38-0f157e37cad9">
+
 
 ## How to Use
 
@@ -36,4 +43,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 **Note:** Refer to the project documentation and comments within the source code for more detailed information on specific functionalities and usage instructions.
 
-<img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/016d8700-927b-4c17-9404-d2a6ee657aa1">
+
