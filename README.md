@@ -4,7 +4,7 @@ This project involves developing a program for image processing. It includes fun
 
 ## Example
 
-First & Second picture input, Third is output.
+First two pictures are input, third is output.
 
 ### Multiply Feature Example
 <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/016d8700-927b-4c17-9404-d2a6ee657aa1">, <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/324e791c-c843-4c88-a9a7-b171976f6725">,<img width="213" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/23033dcf-4953-48ce-8b38-0f157e37cad9">
