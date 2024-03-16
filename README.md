@@ -10,7 +10,7 @@ First & Second picture input, Third is output.
 <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/016d8700-927b-4c17-9404-d2a6ee657aa1">, <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/324e791c-c843-4c88-a9a7-b171976f6725">,<img width="213" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/23033dcf-4953-48ce-8b38-0f157e37cad9">
 
 **Subtract Feature Example**
-![image](https://github.com/Poiixen/Image-Processing/assets/120151400/81ea416f-53a3-4571-b3cc-4ab4bd742384),![image](https://github.com/Poiixen/Image-Processing/assets/120151400/c0c3f4be-7b07-4eb3-8ba6-97ad274dc91a), ![image](https://github.com/Poiixen/Image-Processing/assets/120151400/631cd53a-60e9-458b-bca9-bd37f8ace8ca)
+<img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/81ea416f-53a3-4571-b3cc-4ab4bd742384">, <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/c0c3f4be-7b07-4eb3-8ba6-97ad274dc91a">, <img width="212" alt="image" src="https://github.com/Poiixen/Image-Processing/assets/120151400/631cd53a-60e9-458b-bca9-bd37f8ace8ca">
 
 
 
